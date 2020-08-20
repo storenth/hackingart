@@ -1,0 +1,54 @@
+ 54d:	48 8d 3d e6 00 00 00 	lea    0xe6(%rip),%rdi        # 63a <main>
+ 554:	ff 15 86 0a 20 00    	callq  *0x200a86(%rip)        # 200fe0 <__libc_start_main@GLIBC_2.2.5>
+ 55a:	f4                   	hlt    
+ 55b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000560 <deregister_tm_clones>:
+ 560:	48 8d 3d a9 0a 20 00 	lea    0x200aa9(%rip),%rdi        # 201010 <__TMC_END__>
+ 567:	55                   	push   %rbp
+ 568:	48 8d 05 a1 0a 20 00 	lea    0x200aa1(%rip),%rax        # 201010 <__TMC_END__>
+ 56f:	48 39 f8             	cmp    %rdi,%rax
+ 572:	48 89 e5             	mov    %rsp,%rbp
+ 575:	74 19                	je     590 <deregister_tm_clones+0x30>
+ 577:	48 8b 05 5a 0a 20 00 	mov    0x200a5a(%rip),%rax        # 200fd8 <_ITM_deregisterTMCloneTable>
+ 57e:	48 85 c0             	test   %rax,%rax
+ 581:	74 0d                	je     590 <deregister_tm_clones+0x30>
+ 583:	5d                   	pop    %rbp
+ 584:	ff e0                	jmpq   *%rax
+ 586:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+ 58d:	00 00 00 
+ 590:	5d                   	pop    %rbp
+ 591:	c3                   	retq   
+ 592:	0f 1f 40 00          	nopl   0x0(%rax)
+--
+000000000000063a <main>:
+ 63a:	55                   	push   %rbp
+ 63b:	48 89 e5             	mov    %rsp,%rbp
+ 63e:	48 83 ec 10          	sub    $0x10,%rsp
+ 642:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+ 649:	eb 10                	jmp    65b <main+0x21>
+ 64b:	48 8d 3d a2 00 00 00 	lea    0xa2(%rip),%rdi        # 6f4 <_IO_stdin_used+0x4>
+ 652:	e8 b9 fe ff ff       	callq  510 <puts@plt>
+ 657:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+ 65b:	83 7d fc 09          	cmpl   $0x9,-0x4(%rbp)
+ 65f:	7e ea                	jle    64b <main+0x11>
+ 661:	b8 00 00 00 00       	mov    $0x0,%eax
+ 666:	c9                   	leaveq 
+ 667:	c3                   	retq   
+ 668:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+ 66f:	00 
+
+0000000000000670 <__libc_csu_init>:
+ 670:	41 57                	push   %r15
+ 672:	41 56                	push   %r14
+ 674:	49 89 d7             	mov    %rdx,%r15
+ 677:	41 55                	push   %r13
+ 679:	41 54                	push   %r12
+ 67b:	4c 8d 25 36 07 20 00 	lea    0x200736(%rip),%r12        # 200db8 <__frame_dummy_init_array_entry>
+ 682:	55                   	push   %rbp
+ 683:	48 8d 2d 36 07 20 00 	lea    0x200736(%rip),%rbp        # 200dc0 <__init_array_end>
+ 68a:	53                   	push   %rbx
+ 68b:	41 89 fd             	mov    %edi,%r13d
+ 68e:	49 89 f6             	mov    %rsi,%r14
+ 691:	4c 29 e5             	sub    %r12,%rbp
+ 694:	48 83 ec 08          	sub    $0x8,%rsp
