@@ -8,19 +8,19 @@ int main() {
 
 	void *void_pointer;
 
-	void_pointer = (void *) char_array;
+	void_pointer = (void *) char_array; // also tested with `void_pointer = char_array`
 
-	for(i=0; i < 5; i++) { // iterate through the int array with the int_pointer
+	for(i=0; i < 5; i++) { // iterate through the char array with the void_pointer
 		printf("[char pointer] points to %p, which contains the char '%c'\n",
             void_pointer, *((char *) void_pointer));
 		void_pointer = (void *) ((char *) void_pointer + 1);
 	}
 
-	void_pointer = (void *) int_array;
+	void_pointer = (void *) int_array; // worked with `void_pointer = int_array`
 	
-	for(i=0; i < 5; i++) { // iterate through the int array with the int_pointer
+	for(i=0; i < 5; i++) { // iterate through the int array with the void_pointer
 		printf("[integer pointer] points to %p, which contains the integer %d\n",
             void_pointer, *((int *) void_pointer));
-		void_pointer = (void *) ((int *) void_pointer + 1);
+		void_pointer = (void *) ((int *) void_pointer + 1); // also work well just `void_pointer + 1`
 	}
 }

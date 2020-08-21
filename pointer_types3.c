@@ -10,7 +10,7 @@ int main() {
 	int *int_pointer;
 
 	char_pointer = (char *) int_array; // Typecast into the
-	int_pointer = (int *) char_array;  // pointer's data type
+	int_pointer = (int *) char_array; // pointer's data type
 
 	for(i=0; i < 5; i++) { // iterate through the int array with the int_pointer
 		printf("[integer pointer] points to %p, which contains the char '%c'\n",
