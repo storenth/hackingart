@@ -12,13 +12,13 @@ int main() {
 	char_pointer = (char *) int_array; // Typecast into the
 	int_pointer = (int *) char_array; // pointer's data type
 
-	for(i=0; i < 5; i++) { // iterate through the int array with the int_pointer
+	for(i=0; i < 5; i++) { // iterate through the char array with the int_pointer
 		printf("[integer pointer] points to %p, which contains the char '%c'\n",
             int_pointer, *int_pointer);
 		int_pointer = (int *) ((char *) int_pointer + 1);
 	}
 	
-	for(i=0; i < 5; i++) { // iterate through the char array with the char_pointer
+	for(i=0; i < 5; i++) { // iterate through the int array with the char_pointer
 		printf("[char pointer] points to %p, which contains the integer %d\n",
             char_pointer, *char_pointer);
 		char_pointer = (char *) ((int *) char_pointer + 1);
