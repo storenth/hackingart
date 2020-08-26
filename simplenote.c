@@ -29,12 +29,13 @@ int main(int argc, char *argv[]) {
    printf("[DEBUG] datafile @ %p: \'%s\'\n", datafile, datafile);
 
    strncat(buffer, "\n", 1); // add a newline on the end
-	  
+
 // Opening the file
-   fd = open(datafile, O_WRONLY|O_CREAT|O_APPEND, S_IRUSR|S_IWUSR);
+   fd = open(datafile, O_WRONLY|O_CREAT|O_TRUNC, S_IRUSR|S_IWUSR);
    if(fd == -1)
       fatal("in main() while opening file");
-   printf("[DEBUG] file descriptor is %d\n", fd);
+   printf("[DEBUG] file descriptor is %d @ %p\n", fd, &fd);
+
 // Writing data
    if(write(fd, buffer, strlen(buffer)) == -1)
       fatal("in main() while writing buffer to file");
