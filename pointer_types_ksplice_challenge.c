@@ -35,6 +35,6 @@ int main()
 	for (i = 0; i < 5; i++)
 	{
 		printf("[integer pointer] points to %p, which contains the integer %d\n",
-			   int_array + i, *(int_array + i));
+			   int_array + i, *(int_array + i)); // notation faster from gcc point of view
 	}
 }
