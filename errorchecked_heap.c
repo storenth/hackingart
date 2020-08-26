@@ -2,17 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-void *errorchecked_malloc(unsigned int); // function prototype for errorchecked_malloc()
+void *errorchecked_malloc(long int); // function prototype for errorchecked_malloc()
 
 int main(int argc, char *argv[]) {
+   char esc = 'X'; // exit point
    char *char_ptr;  // a char pointer
    int *int_ptr;    // an integer pointer
-   int mem_size;
+   long int mem_size;
 
    if (argc < 2)    // if there aren't commandline arguments,
       mem_size = 50; // use 50 as the default value..
    else
-      mem_size = atoi(argv[1]);
+      mem_size = atol(argv[1]);
 
    printf("\t[+] allocating %d bytes of memory on the heap for char_ptr\n", mem_size);
    char_ptr = (char *) errorchecked_malloc(mem_size); // allocating heap memory
@@ -39,12 +40,17 @@ int main(int argc, char *argv[]) {
    free(int_ptr); // freeing heap memory
    printf("\t[-] freeing char_ptr's heap memory...\n");
    free(char_ptr); // freeing the other block of heap memory
+
+   // exit point
+   puts("\nexit point:");
+   scanf(" %c", &esc);
+   return 0;
 }
 
-void *errorchecked_malloc(unsigned int size) { // an error checked malloc() function
+void *errorchecked_malloc(long int size) { // an error checked malloc() function
    void *ptr;
    ptr = malloc(size);
-   if(ptr == NULL) {
+   if(ptr == 0) {
       fprintf(stderr, "Error: could not allocate heap memory.\n");
       exit(-1);
    }
