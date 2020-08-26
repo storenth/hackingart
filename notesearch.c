@@ -15,8 +15,10 @@ int main(int argc, char *argv[]) {
 	int userid, printing=1, fd; // file descriptor
 	char searchstring[100];
 
-	if(argc > 1)                        // If there is an arg
+	if(argc > 1){                        // If there is an arg
 		strcpy(searchstring, argv[1]);   //   that is the search string
+		printf("searchstring arg[1]=%s\n", searchstring);
+	}
 	else                                // otherwise
 		searchstring[0] = 0;             //   search string is empty
 
@@ -59,10 +61,10 @@ int find_user_note(int fd, int user_uid) {
 	int length;
 
 	while(note_uid != user_uid) {  // loop until a note for user_uid is found
-		if(read(fd, &note_uid, 4) != 4) // read the uid data
+		if(read(fd, &note_uid, 4) != 4) // read the uid data (4 bytes)
 			return -1; // if 4 bytes aren't read, return end of file code
 		if(read(fd, &byte, 1) != 1) // read the newline separator
-         return -1;
+			return -1;
 
 		byte = length = 0;
 		while(byte != '\n') {  // figure out how many bytes to the end of line
@@ -71,7 +73,8 @@ int find_user_note(int fd, int user_uid) {
 			length++;  
 		}
 	}
-	lseek(fd, length * -1, SEEK_CUR); // rewind file reading by length bytes
+	//(off_t) typecasting because of incompatible lseek offset argument
+	lseek(fd, (off_t)length * -1, SEEK_CUR); // rewind file reading by length bytes
 
 	printf("[DEBUG] found a %d byte note for user id %d\n", length, note_uid);
 	return length;
