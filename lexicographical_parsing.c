@@ -1,6 +1,9 @@
-/* Test challenge for Kirill Zhdanov from Huawei */
+/* lexicographical_parsing.c */
 /* storenth.catena@gmail.com */
-/* This source code solve Smallest Subsequence of Distinct Characters partially based on Bubble sort algo */
+/* This source code solve lexicographical parsing partially based on Bubble sort algo
+try to optimize using only allocated bytes */
+/* Get the user input string, remove duplicated chars and sort the string */
+
 
 
 #include <stdio.h>
