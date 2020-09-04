@@ -21,6 +21,43 @@ void *ec_malloc(unsigned int size) {
    return ptr;
 }
 
+// Using bit flags in combination with bitwise logic to binary convert technique.
+void binary_print(unsigned int value) {
+   unsigned int mask = 0xff000000; // start with a mask for the highest byte
+   unsigned int shift = 256*256*256; // start with a shift for the highest byte
+   unsigned int byte, byte_iterator, bit_iterator;
+
+   for(byte_iterator=0; byte_iterator < 4; byte_iterator++) {
+      byte = (value & mask) / shift; // isolate each byte
+      printf(" ");
+      for(bit_iterator=0; bit_iterator < 8; bit_iterator++) { // print the byte's bits
+         if(byte & 0x80) // if the highest bit in the byte isn't 0
+            printf("1");       // print a 1
+         else
+            printf("0");       // otherwise print a 0
+         byte *= 2;         // move all the bits to the left by 1
+      }
+      mask /= 256;       // move the bits in mask right by 8
+      shift /= 256;      // move the bits in shift right by 8
+   }
+}
+
+// Print the bytes of the struct
+void dump_integer_bytes(unsigned int *pointer, int size) {
+	int i;
+	unsigned char *raw_ptr; // char to be able iterate throught the time_ptr
+
+	printf("%d bytes of integer located at 0x%08x\n",size, pointer);
+	raw_ptr = (unsigned char *) pointer;
+	for(i=0; i < size; i++)
+	{
+		printf("%02x ", raw_ptr[i]);
+		if(i%16 == 15) // print a newline every 16 bytes (31%16 = 15, mean 32 bits already printed)
+			printf("\n");
+	}
+	printf("\n");
+}
+
 // dumps raw memory in hex byte and printable split format
 void dump(const unsigned char *data_buffer, const unsigned int length) {
 	unsigned char byte;
