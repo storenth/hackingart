@@ -20,5 +20,3 @@ int main() {
 
 	printf("Current time is: %02d:%02d:%02d\n", hour, minute, second);
 }
-	
-	

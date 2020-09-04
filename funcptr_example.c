@@ -15,7 +15,9 @@ int main() {
 	int (*function_ptr) ();
 
 	function_ptr = func_one;
-	printf("function_ptr is 0x%08x\n", function_ptr);
+	printf("function_ptr is 0x%08x @ %p\n", function_ptr, &function_ptr);
+	printf("func_one is 0x%08x @ %p\n", func_one, &func_one);
+
 	value = function_ptr();
 	printf("value returned was %d\n", value);
 
